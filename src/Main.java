@@ -1,7 +1,4 @@
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.*;
 
 import java.time.LocalDate;
 
@@ -16,6 +13,16 @@ public class Main {
         curso2.setTitulo("curso js");
         curso2.setDescricao("descrição curso js");
         curso2.setCargaHoraria(4);
+
+        Curso curso3 = new Curso();
+        curso3.setTitulo("Curso Spring Data");
+        curso3.setDescricao("descrição curso Spring Data");
+        curso3.setCargaHoraria(4);
+
+        Curso curso4 = new Curso();
+        curso4.setTitulo("Curso Spring framework / MVC");
+        curso4.setDescricao("descrição curso Spring framework / MVC");
+        curso4.setCargaHoraria(4);
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("mentoria de java");
@@ -33,9 +40,22 @@ public class Main {
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
 
+        Formacao formacaoJava = new Formacao();
+        formacaoJava.setNome("Java Developer");
+        formacaoJava.setDescricao("Formação completa em Java");
+        formacaoJava.getConteudos().add(curso1);
+        formacaoJava.getConteudos().add(curso3);
+        formacaoJava.getConteudos().add(curso4);
+
+        Dev devGeorge = new Dev();
+        devGeorge.setNome("George W. Neto");
+        devGeorge.inscrever(formacaoJava);//Bootcamp ou Formação
+        System.out.println("Conteúdos Inscritos George:" + devGeorge.getConteudosInscritos());
+
+
         Dev devCamila = new Dev();
         devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
+        devCamila.inscrever(bootcamp);//Bootcamp ou Formação
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         devCamila.progredir();
         devCamila.progredir();
@@ -48,7 +68,7 @@ public class Main {
 
         Dev devJoao = new Dev();
         devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
+        devJoao.inscrever(bootcamp); //Bootcamp ou Formação
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         devJoao.progredir();
         devJoao.progredir();
@@ -57,6 +77,8 @@ public class Main {
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
         System.out.println("XP:" + devJoao.calcularTotalXp());
+
+
 
     }
 
